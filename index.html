@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Document</title>
+
+	<script src="libs/gsap/gsap.min.js" defer></script>
+	<script src="libs/gsap/ScrollTrigger.min.js" defer></script>
+	<script src="libs/gsap/ScrollSmoother.min.js" defer></script>
+
+	<link rel="stylesheet" href="css/main.css">
+	<script src="libs/jquery-3.6.4.min.js" defer></script>
+	<script src="js/app.js" defer></script>
+	<script src="js/calculator.js" defer></script>
+
+</head>
+<body>
+
+	<div class="wrapper">
+		<div class="content">
+
+			<header class="hero-section">
+				<img data-speed=".6" class="hero" src="img/hero.png" alt="Alt" >
+				<div class="container">
+					<div data-speed=".75" class="main-header">
+						<h1 class="main-title">example</h1>
+					</div>
+				</div>
+			</header>
+		
+			<div class="portfolio">
+				<div class="container">
+					<main class="gallery">
+	
+						<div data-speed=".9" class="gallery__left">
+		
+							<img class="gallery__item" src="img/work/1.jpg" alt="Alt">
+							<img class="gallery__item" src="img/work/2.jpg" alt="Alt">
+		
+							<div class="text-block gallery__item">
+								<h2 class="text-block__h">Creative floating scroll with amazing parallax effect</h2>
+								<p class="text-block__p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor amount scrolling.</p>
+							</div>
+		
+							<img class="gallery__item" src="img/work/6.jpg" alt="Alt">
+		
+						</div>
+
+						<div data-speed="1.1" class="gallery__right">
+		
+							<div class="text-block gallery__item">
+								<h2 class="text-block__h">Creative floating scroll with amazing parallax effect</h2>
+								<p class="text-block__p">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor amount scrolling.</p>
+							</div>
+		
+							<img class="gallery__item" src="img/work/4.jpg" alt="Alt">
+							<img class="gallery__item" src="img/work/5.jpg" alt="Alt">
+							<img class="gallery__item" src="img/work/3.jpg" alt="Alt">
+
+		
+						</div>
+
+					</main>
+
+				</div>
+			</div>
+
+			<div class="container">
+				<div id="canvas" class="container group">
+					<h1 class="calc-title">Калькулятор расчета стоимости нанесения напыления</h1>
+					<div id="primaryContent" class="group">
+
+						<form class="cart" id="cart_custom">
+							<fieldset id="product-summary">
+								<div class="row">
+									<div class="item">
+										<div class="order">
+											<label for="area">Площадь поверхности под напыление (м<sup>2</sup>): <br>(ограничения: размер детали 2 м в длину, 1 м диаметр) </label>
+											<input type="number" name="area" id="area" min="0" placeholder="0" size="3" >
+										</div>
+									</div>
+
+									<div class="item">
+										<div class="order">
+											<label for="thickness">Толщина покрытия (от 0.1 мм до 5 мм): <br></label>
+											<input type="number" name="thickness" id="thickness" min="0" placeholder="0" size="3" >
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="item">
+										<div class="order">
+											<label for="geometry">Сложность геометрии детали: <br></label>
+											<input type="number" name="geometry" id="geometry" min="0" placeholder="0" size="3" >
+										</div>
+									</div>
+									<div class="item">
+										<div class="group col3 state">
+											<label for="state">Напыляемый материал:</label>
+											<select id="id_state" name="state" required>
+												<option value=""></option>
+												<option value="LA">Латунь</option>
+												<option value="AL">Алюминий</option>
+												<option value="CU">Медь</option>
+												<option value="ST">Сталь</option>
+												<option value="ZN">Цинк</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+
+							<div class="group col2 calc">
+								<p> <label for="btn_estimate"></label><br>
+
+									<input class="calculate" type="submit" value="Рассчитать стоимость работы" id="btn_estimate">
+									<input id="total_estimate" disabled="true" type="text" name="total" >
+								</p>
+								<div id="results">
+
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
