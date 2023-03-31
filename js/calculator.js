@@ -64,6 +64,6 @@
 
         let totalPrice = area + thickness + geometry + material;
 
-        document.getElementById('total_estimate').value=totalPrice;
+        document.getElementById('total_estimate').value=totalPrice + ' руб.';
     }
 })();
