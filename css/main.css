@@ -113,7 +113,7 @@ h2 {
 	flex: 0 0 50%;
 }
 
-label {
+label, p {
 	font-weight:bold;
 }
 input[type="number"], input[type="text"], textarea {
@@ -122,7 +122,7 @@ input[type="number"], input[type="text"], textarea {
 	background: #eee;
 	border-radius: 3px;
 	padding: 14px 16px;
-	font-size: 1rem
+	font-size: 1rem;
 }
 textarea {
 	height: 6em;
@@ -130,6 +130,10 @@ textarea {
 }
 #summary {
 	margin-top:25px;
+}
+#hid {
+	opacity: 0;
+	margin-top: 130px;
 }
 input[type='submit'] {
 	padding: 12px 16px;
@@ -141,6 +145,29 @@ input[type='submit'] {
 	line-height: 1;
 	-webkit-appearance: none;
 	border-radius: 3px
+}
+input[type='radio'] + label:not(:last-child) {
+	margin-right: 30px;
+}
+input[type='radio'] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+	border-radius: 50%;
+	width: 16px;
+	height: 16px;
+
+	border: 2px solid #999;
+	transition: 0.2s all linear;
+	outline: none;
+	margin-right: 5px;
+
+	position: relative;
+	top: 4px;
+}
+input[type='radio']:checked {
+	border: 5px solid cadetblue;
 }
 .calculate {
 	background: #fafafa;
@@ -156,4 +183,19 @@ input[type='submit'] {
 	border-top:5px dotted #F2EFEC;
 	border-bottom:5px dotted #F2EFEC;
 	margin-top:25px;
+}
+#setting1 {
+	display: none;
+}
+#setting2 {
+	display: none;
+}
+#setting3 {
+	display: none;
+}
+#setting4 {
+	display: none;
+}
+#data {
+	display: none;
 }

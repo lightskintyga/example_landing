@@ -71,44 +71,65 @@
 
 			<div class="container">
 				<div id="canvas" class="container group">
-					<h1 class="calc-title">Калькулятор расчета стоимости нанесения напыления</h1>
+					<h1 class="calc-title">Калькулятор расчета стоимости нанесения напыления без расходных материалов</h1>
 					<div id="primaryContent" class="group">
 
 						<form class="cart" id="cart_custom">
 							<fieldset id="product-summary">
 								<div class="row">
 									<div class="item">
-										<div class="order">
-											<label for="area">Площадь поверхности под напыление (м<sup>2</sup>): <br>(ограничения: размер детали 2 м в длину, 1 м диаметр) </label>
-											<input type="number" name="area" id="area" min="0" placeholder="0" size="3" >
+										<div class="surfaceView">
+											<p>Вид поверхности:<br></p>
+											<input type="radio" id="figure1" name="figure" value="круг">
+											<label for="figure1">Круг</label>
+
+											<input type="radio" id="figure2" name="figure">
+											<label for="figure2">Цилиндр</label>
+
+											<input type="radio" id="figure3" name="figure">
+											<label for="figure3">Прямоугольник</label>
 										</div>
 									</div>
-
 									<div class="item">
-										<div class="order">
-											<label for="thickness">Толщина покрытия (от 0.1 мм до 5 мм): <br></label>
-											<input type="number" name="thickness" id="thickness" min="0" placeholder="0" size="3" >
+										<div class="area">
+											<p id="data">Данные для расчета площади поверхности под напыление (м<sup>2</sup>): <br>(ограничения: размер детали 2 м в длину, 1 м диаметр)</p>
+											<div id="setting1">
+												<label for="radius">Радиус (см):</label>
+												<input type="number" name="radius" id="radius" min="0" placeholder="0" size="3" step="any">
+											</div>
+
+											<div id="setting2">
+												<label for="height">Высота (см):</label>
+												<input type="number" name="height" id="height" min="0" placeholder="0" size="3" step="any">
+											</div>
+
+											<div id="setting3">
+												<label for="length">Длина (см):</label>
+												<input type="number" name="length" id="length" min="0" placeholder="0" size="3" step="any">
+											</div>
+
+											<div id="setting4">
+												<label for="width">Ширина (см):</label>
+												<input type="number" name="width" id="width" min="0" placeholder="0" size="3" step="any">
+											</div>
 										</div>
 									</div>
 								</div>
-
 								<div class="row">
 									<div class="item">
-										<div class="order">
-											<label for="geometry">Сложность геометрии детали: <br></label>
-											<input type="number" name="geometry" id="geometry" min="0" placeholder="0" size="3" >
+										<div class="thickness">
+											<label for="thickness">Толщина покрытия (от 0.1 мм до 5 мм): <br></label>
+											<input type="number" name="thickness" id="thickness" min="0.1" max="5" placeholder="0.1" size="3" step="any">
 										</div>
 									</div>
 									<div class="item">
 										<div class="group col3 state">
-											<label for="state">Напыляемый материал:</label>
+											<label for="id_state">Сложность геометрии детали:</label>
 											<select id="id_state" name="state" required>
 												<option value=""></option>
-												<option value="LA">Латунь</option>
-												<option value="AL">Алюминий</option>
-												<option value="CU">Медь</option>
-												<option value="ST">Сталь</option>
-												<option value="ZN">Цинк</option>
+												<option value="1">1</option>
+												<option value="1.5">1.5</option>
+												<option value="2">2</option>
 											</select>
 										</div>
 									</div>
@@ -121,12 +142,10 @@
 									<input class="calculate" type="submit" value="Рассчитать стоимость работы" id="btn_estimate">
 									<input id="total_estimate" disabled="true" type="text" name="total" >
 								</p>
-								<div id="results">
-
-								</div>
 							</div>
 						</form>
 					</div>
+					<p id="hid">z</p>
 				</div>
 			</div>
 		</div>
