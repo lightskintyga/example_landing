@@ -78,38 +78,38 @@
 							<fieldset id="product-summary">
 								<div class="row">
 									<div class="item">
-										<div class="surfaceView">
+										<div class="surfaceType">
 											<p>Вид поверхности:<br></p>
-											<input type="radio" id="figure1" name="figure" value="круг">
-											<label for="figure1">Круг</label>
+											<input type="radio" id="circle" name="figure">
+											<label for="circle">Круг</label>
 
-											<input type="radio" id="figure2" name="figure">
-											<label for="figure2">Цилиндр</label>
+											<input type="radio" id="cylinder" name="figure">
+											<label for="cylinder">Цилиндр</label>
 
-											<input type="radio" id="figure3" name="figure">
-											<label for="figure3">Прямоугольник</label>
+											<input type="radio" id="rectangle" name="figure">
+											<label for="rectangle">Прямоугольник</label>
 										</div>
 									</div>
 									<div class="item">
 										<div class="area">
-											<p id="data">Данные для расчета площади поверхности под напыление (м<sup>2</sup>): <br>(ограничения: размер детали 2 м в длину, 1 м диаметр)</p>
+											<p id="values">Данные для расчета площади поверхности под напыление (м<sup>2</sup>): <br>(ограничения: размер детали 2 м в длину, 1 м диаметр)</p>
 											<div id="setting1">
-												<label for="radius">Радиус (см):</label>
+												<label for="radius">Радиус (мм):</label>
 												<input type="number" name="radius" id="radius" min="0" placeholder="0" size="3" step="any">
 											</div>
 
 											<div id="setting2">
-												<label for="height">Высота (см):</label>
+												<label for="height">Высота (мм):</label>
 												<input type="number" name="height" id="height" min="0" placeholder="0" size="3" step="any">
 											</div>
 
 											<div id="setting3">
-												<label for="length">Длина (см):</label>
+												<label for="length">Длина (мм):</label>
 												<input type="number" name="length" id="length" min="0" placeholder="0" size="3" step="any">
 											</div>
 
 											<div id="setting4">
-												<label for="width">Ширина (см):</label>
+												<label for="width">Ширина (мм):</label>
 												<input type="number" name="width" id="width" min="0" placeholder="0" size="3" step="any">
 											</div>
 										</div>
@@ -117,11 +117,19 @@
 								</div>
 								<div class="row">
 									<div class="item">
+										<div class="details">
+											<label for="details">Количество деталей: <br></label>
+											<input type="number" name="details" id="details" min="1" placeholder="1" size="3" step="1">
+										</div>
+									</div>
+									<div class="item">
 										<div class="thickness">
 											<label for="thickness">Толщина покрытия (от 0.1 мм до 5 мм): <br></label>
 											<input type="number" name="thickness" id="thickness" min="0.1" max="5" placeholder="0.1" size="3" step="any">
 										</div>
 									</div>
+								</div>
+								<div class="row">
 									<div class="item">
 										<div class="group col3 state">
 											<label for="id_state">Сложность геометрии детали:</label>
@@ -140,7 +148,7 @@
 								<p> <label for="btn_estimate"></label><br>
 
 									<input class="calculate" type="submit" value="Рассчитать стоимость работы" id="btn_estimate">
-									<input id="total_estimate" disabled="true" type="text" name="total" >
+									<input id="total_estimate" disabled="true" type="text" name="total" size="100">
 								</p>
 							</div>
 						</form>

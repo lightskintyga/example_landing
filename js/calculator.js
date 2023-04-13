@@ -3,11 +3,11 @@
 
     let state = document.getElementById("id_state");
 
-    let state_figure_1 = document.getElementById("figure1");
+    let stateCircle = document.getElementById("circle");
 
-    let state_figure_2 = document.getElementById("figure2");
+    let stateCylinder = document.getElementById("cylinder");
 
-    let state_figure_3 = document.getElementById("figure3");
+    let stateRectangle = document.getElementById("rectangle");
 
     document.addEventListener('DOMContentLoaded', function() {
 
@@ -15,45 +15,45 @@
 
         let v_btn_estimate = document.getElementById('btn_estimate');
 
-        let showData = document.getElementById('data');
+        let showValues = document.getElementById('values');
 
-        let v_btn_radius = document.getElementById('setting1');
+        let buttonRadius = document.getElementById('setting1');
 
-        let v_btn_height = document.getElementById("setting2");
+        let buttonHeight = document.getElementById("setting2");
 
-        let v_btn_length = document.getElementById("setting3");
+        let buttonLength = document.getElementById("setting3");
 
-        let v_btn_width = document.getElementById("setting4");
+        let buttonWidth = document.getElementById("setting4");
 
         v_btn_estimate.disabled = true;
 
-        state_figure_1.addEventListener('change', function () {
-            if (state_figure_1.checked) {
-                showData.style.display = 'block';
-                v_btn_radius.style.display = 'block';
-                v_btn_height.style.display = 'none';
-                v_btn_length.style.display = 'none';
-                v_btn_width.style.display = 'none';
+        stateCircle.addEventListener('change', function () {
+            if (stateCircle.checked) {
+                showValues.style.display = 'block';
+                buttonRadius.style.display = 'block';
+                buttonHeight.style.display = 'none';
+                buttonLength.style.display = 'none';
+                buttonWidth.style.display = 'none';
             }
         })
 
-        state_figure_2.addEventListener('change', function () {
-            if (state_figure_2.checked) {
-                showData.style.display = 'block';
-                v_btn_radius.style.display = 'block';
-                v_btn_height.style.display = 'block';
-                v_btn_length.style.display = 'none';
-                v_btn_width.style.display = 'none';
+        stateCylinder.addEventListener('change', function () {
+            if (stateCylinder.checked) {
+                showValues.style.display = 'block';
+                buttonRadius.style.display = 'block';
+                buttonHeight.style.display = 'block';
+                buttonLength.style.display = 'none';
+                buttonWidth.style.display = 'none';
             }
         })
 
-        state_figure_3.addEventListener('change', function () {
-            if (state_figure_3.checked) {
-                showData.style.display = 'block';
-                v_btn_radius.style.display = 'none';
-                v_btn_height.style.display = 'none';
-                v_btn_length.style.display = 'block';
-                v_btn_width.style.display = 'block';
+        stateRectangle.addEventListener('change', function () {
+            if (stateRectangle.checked) {
+                showValues.style.display = 'block';
+                buttonRadius.style.display = 'none';
+                buttonHeight.style.display = 'none';
+                buttonLength.style.display = 'block';
+                buttonWidth.style.display = 'block';
             }
         })
 
@@ -79,16 +79,26 @@
             state.focus();
         }
 
+        // блок констант
+
+        const wireDensity = 0.0076; // плотность проволоки, кг
+        const efficiency = 2.68; // производительность, кг/ч
+        const minTimeToPrepare = 0.15; // минимальное время на подготовку, ч
+        const maxTimeToPrepare = 1; // максимальное время на подготовку, ч
+
+        // -------------------- //
+
         let radius = parseFloat(document.getElementById("radius").value);
         let height = parseFloat(document.getElementById("height").value);
         let length = parseFloat(document.getElementById("length").value);
         let width = parseFloat(document.getElementById("width").value);
         let thickness = parseFloat(document.getElementById("thickness").value);
+        let details = parseInt(document.getElementById("details").value);
         let v_btn_radius = document.getElementById('setting1');
         let v_btn_height = document.getElementById("setting2");
         let v_btn_length = document.getElementById("setting3");
         let v_btn_width = document.getElementById("setting4");
-        let complexity, totalPrice;
+        let complexity, minTotalPrice, maxTotalPrice, totalPrice;
 
         let state_index = state.value;
 
@@ -104,8 +114,35 @@
                 break
         }
 
+        function getArea() {
+            if (stateCircle.checked) {
+                return Math.PI * (radius / 1000) ** 2;
+            }
+        }
+
+        function getTimeForSpraying() {
+            let totalArea = getArea() * details;
+            let volume = thickness * 1000 * totalArea;
+            let weight = volume * wireDensity;
+
+            return weight / 0.5 / efficiency;
+        }
+
+        function getTotalPrice() {
+            let timeForSpraying = getTimeForSpraying();
+
+            let totalMinTime = timeForSpraying + minTimeToPrepare;
+            let totalMaxTime = timeForSpraying + maxTimeToPrepare;
+
+            let minCostPrice = totalMinTime * 5000;
+            let maxCostPrice = totalMaxTime * 5000;
+
+            return [Math.ceil(minCostPrice / 0.9), Math.ceil(maxCostPrice / 0.9)];
+        }
+
         if (v_btn_radius.style.display === 'block' && v_btn_height.style.display === 'none') {
-            totalPrice = thickness + complexity + radius;
+            minTotalPrice = getTotalPrice()[0];
+            maxTotalPrice = getTotalPrice()[1];
         }
         else if (v_btn_radius.style.display === 'block' && v_btn_height.style.display === 'block') {
             totalPrice = thickness + complexity + radius + height;
@@ -115,6 +152,6 @@
         }
 
 
-        document.getElementById('total_estimate').value = totalPrice + ' руб.';
+        document.getElementById('total_estimate').value = 'от ' + minTotalPrice + ' руб. ' + 'до ' + maxTotalPrice + ' руб.';
     }
 })();

@@ -92,21 +92,21 @@ body {
 	line-height: 1.75;
 }
 .row {
-	display:flex;
-	flex-wrap:wrap;
+	display: flex;
+	flex-wrap: wrap;
 	flex-direction: row;
-	margin:25px 0;
+	margin: 25px 0;
 }
 
 .row .item {
-	flex:0 0 47%;
+	flex: 0 0 47%;
 }
 .row .col3 {
 	flex: 0 0 33%;
 }
 
 h2 {
-	margin-top:25px;
+	margin-top: 25px;
 }
 
 .row .col2 {
@@ -114,7 +114,7 @@ h2 {
 }
 
 label, p {
-	font-weight:bold;
+	font-weight: bold;
 }
 input[type="number"], input[type="text"], textarea {
 	border: none;
@@ -129,7 +129,7 @@ textarea {
 	width: 85%;
 }
 #summary {
-	margin-top:25px;
+	margin-top: 25px;
 }
 #hid {
 	opacity: 0;
@@ -173,16 +173,16 @@ input[type='radio']:checked {
 	background: #fafafa;
 }
 #summary, #product-summary {
-	border-top:1px solid #F2EFEC;
-	border-bottom:1px solid #F2EFEC;
-	border-left:none;
-	border-right:none;
-	padding:1%;
+	border-top: 1px solid #F2EFEC;
+	border-bottom: 1px solid #F2EFEC;
+	border-left: none;
+	border-right: none;
+	padding: 1%;
 }
 .calc {
-	border-top:5px dotted #F2EFEC;
-	border-bottom:5px dotted #F2EFEC;
-	margin-top:25px;
+	border-top: 5px dotted #F2EFEC;
+	border-bottom: 5px dotted #F2EFEC;
+	margin-top: 25px;
 }
 #setting1 {
 	display: none;
@@ -198,4 +198,8 @@ input[type='radio']:checked {
 }
 #data {
 	display: none;
+}
+#total_estimate {
+	background: transparent;
+	color: #fafafa;
 }
