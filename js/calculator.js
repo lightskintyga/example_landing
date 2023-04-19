@@ -83,7 +83,7 @@
 
         const wireDensity = 0.0076; // плотность проволоки, кг
         const efficiency = 2.68; // производительность, кг/ч
-        const minTimeToPrepare = 0.15; // минимальное время на подготовку, ч
+        const minTimeToPrepare = 0.25; // минимальное время на подготовку, ч
         const maxTimeToPrepare = 1; // максимальное время на подготовку, ч
 
         // -------------------- //
@@ -94,11 +94,7 @@
         let width = parseFloat(document.getElementById("width").value);
         let thickness = parseFloat(document.getElementById("thickness").value);
         let details = parseInt(document.getElementById("details").value);
-        let v_btn_radius = document.getElementById('setting1');
-        let v_btn_height = document.getElementById("setting2");
-        let v_btn_length = document.getElementById("setting3");
-        let v_btn_width = document.getElementById("setting4");
-        let complexity, minTotalPrice, maxTotalPrice, totalPrice;
+        let complexity, minTotalPrice, maxTotalPrice;
 
         let state_index = state.value;
 
@@ -117,6 +113,12 @@
         function getArea() {
             if (stateCircle.checked) {
                 return Math.PI * (radius / 1000) ** 2;
+            }
+            else if (stateCylinder.checked) {
+                return 2 * Math.PI * (radius / 1000) * (height / 1000) + 2 * Math.PI * (radius / 1000) ** 2;
+            }
+            else if (stateRectangle.checked) {
+                return (length / 1000) * (width / 1000);
             }
         }
 
@@ -137,20 +139,11 @@
             let minCostPrice = totalMinTime * 5000;
             let maxCostPrice = totalMaxTime * 5000;
 
-            return [Math.ceil(minCostPrice / 0.9), Math.ceil(maxCostPrice / 0.9)];
+            return [Math.ceil(minCostPrice / 0.9 * complexity), Math.ceil(maxCostPrice / 0.9 * complexity)];
         }
 
-        if (v_btn_radius.style.display === 'block' && v_btn_height.style.display === 'none') {
-            minTotalPrice = getTotalPrice()[0];
-            maxTotalPrice = getTotalPrice()[1];
-        }
-        else if (v_btn_radius.style.display === 'block' && v_btn_height.style.display === 'block') {
-            totalPrice = thickness + complexity + radius + height;
-        }
-        else if (v_btn_length.style.display === 'block' && v_btn_width.style.display === 'block') {
-            totalPrice = thickness + complexity + length + width;
-        }
-
+        minTotalPrice = getTotalPrice()[0];
+        maxTotalPrice = getTotalPrice()[1];
 
         document.getElementById('total_estimate').value = 'от ' + minTotalPrice + ' руб. ' + 'до ' + maxTotalPrice + ' руб.';
     }
