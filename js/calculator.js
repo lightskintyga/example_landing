@@ -61,11 +61,9 @@
 
             if (state.value === '') {
                 v_btn_estimate.disabled = true;
-                console.log("True");
             }
             else {
                 v_btn_estimate.disabled = false;
-                console.log("False")
             }
 
         });
@@ -112,21 +110,28 @@
 
         function getArea() {
             if (stateCircle.checked) {
+                console.log('Площадь круга: ' + (Math.PI * (radius / 1000) ** 2).toFixed(3));
                 return Math.PI * (radius / 1000) ** 2;
             }
             else if (stateCylinder.checked) {
-                return 2 * Math.PI * (radius / 1000) * (height / 1000) + 2 * Math.PI * (radius / 1000) ** 2;
+                console.log('Площадь цилиндра: ' + (Math.PI * (radius / 1000) * (height / 1000)).toFixed(3));
+                return 2 * Math.PI * (radius / 1000) * (height / 1000);
             }
             else if (stateRectangle.checked) {
+                console.log('Площадь прямоугольника: ' + ((length / 1000) * (width / 1000)).toFixed(3));
                 return (length / 1000) * (width / 1000);
             }
         }
 
         function getTimeForSpraying() {
             let totalArea = getArea() * details;
+            console.log('Площадь всех деталей: ' + totalArea.toFixed(3));
             let volume = thickness * 1000 * totalArea;
+            console.log('Объем: ' + volume.toFixed(3));
             let weight = volume * wireDensity;
+            console.log('Вес: ' + weight.toFixed(3));
 
+            console.log('Часов на напыление: ' + (weight / 0.5 / efficiency).toFixed(3));
             return weight / 0.5 / efficiency;
         }
 
@@ -134,7 +139,9 @@
             let timeForSpraying = getTimeForSpraying();
 
             let totalMinTime = timeForSpraying + minTimeToPrepare;
+            console.log('Общее количество времени (при минимальном времени на подготовку: ' + totalMinTime.toFixed(3));
             let totalMaxTime = timeForSpraying + maxTimeToPrepare;
+            console.log('Общее количество времени (при максимальном времени на подготовку: ' + totalMaxTime.toFixed(3));
 
             let minCostPrice = totalMinTime * 5000;
             let maxCostPrice = totalMaxTime * 5000;
